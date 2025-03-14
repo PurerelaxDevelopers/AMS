@@ -7,7 +7,9 @@ import bcrypt
 
 
 # Basic DB Configuration
-mongodb_connection = MongoClient('localhost:27017')
+# mongodb_connection = MongoClient('localhost:27017')
+mongodb_connection = MongoClient('mongodb+srv://vrvimalraj04:s1WarkceHiLQ47jh@cluster0.edetq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', tls=True,
+    tlsAllowInvalidCertificates=True)
 db = mongodb_connection['attendance']
 CollectionName = db['employee_details']
 AttendanceCollection = db['attendance_tracker']
