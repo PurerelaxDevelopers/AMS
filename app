@@ -10,7 +10,7 @@ CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")  # Initialize Socket.IO
 
 # Register the Employee Details
-@app.route("/registerEmployee", methods=['POST'])
+@app.route("/api/registerEmployee", methods=['POST'])
 def _register_employee_details():
     try:
         data = request.get_json()
@@ -32,7 +32,7 @@ def _register_employee_details():
     except Exception as e:
         return jsonify({'error': str(e)})
 
-@app.route('/listEmployee', methods=['GET'])
+@app.route('/api/listEmployee', methods=['GET'])
 def _list_employee():
     try:
         listEmployee = _Employee_register_list()
@@ -41,7 +41,7 @@ def _list_employee():
     except Exception as e:
         return jsonify({'error', str(e)}), 400
 
-@app.route('/deleteEmployee/<employee_id>', methods=['DELETE'])
+@app.route('/api/deleteEmployee/<employee_id>', methods=['DELETE'])
 def _delete_employee(employee_id):
     try:
         DeletedEmployee = _Employee_register_delete(employee_id)
@@ -50,7 +50,7 @@ def _delete_employee(employee_id):
     except Exception as e:
         return jsonify({'error', str(e)}), 400
 
-@app.route('/updateEmployee', methods=['PUT'])
+@app.route('/api/updateEmployee', methods=['PUT'])
 def _update_employee():
     try:
         data = request.get_json()
@@ -108,7 +108,7 @@ def _attendance_dashboard():
 #     except Exception as e:
 #         return jsonify({'error': str(e)})
 
-@app.route("/attendance_tracking/<rfid_number>", methods=['GET'])
+@app.route("/api/attendance_tracking/<rfid_number>", methods=['GET'])
 def _attendance_tracking(rfid_number):
     try:
         if not rfid_number:
@@ -135,7 +135,7 @@ def _attendance_tracking_show():
         emit('error', {'error': str(e)})
 
 # Search the Filter Attendance Reports
-@app.route("/search_the_filter_attendance_reports", methods=['POST'])
+@app.route("/api/search_the_filter_attendance_reports", methods=['POST'])
 def _search_the_filter_attendance_reports():
     try:
         data  = request.get_json()
@@ -147,7 +147,7 @@ def _search_the_filter_attendance_reports():
 
 
 # Login API Endpoint
-@app.route('/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def login():
     try:
         # Get JSON data from the request
